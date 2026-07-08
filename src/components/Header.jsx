@@ -38,7 +38,11 @@ export default function Header({ className }) {
   return (
     <header className={`nav ${isMenuOpen ? "is-open" : ""} ${className || ""}`} id="nav">
       <a href="/" className="nav__logo" data-magnetic onClick={closeMenu}>
-        BillNode<span>®</span>
+        <img
+          src="/assets/logo.png"
+          alt="BillNode"
+          className="h-10 w-auto"
+        />
       </a>
       <nav className="nav__links">
         <a href="/features" data-cursor>Features</a>
@@ -74,9 +78,8 @@ export default function Header({ className }) {
         </nav>
         <div className="nav__drawer-footer">
           <div className="nav__drawer-socials">
-            <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" data-cursor>Twitter</a>
-            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" data-cursor>LinkedIn</a>
-            <a href="mailto:hello@billnode.com" data-cursor>Email</a>
+            <a href="https://x.com/billnode" target="_blank" rel="noopener noreferrer" data-cursor>X</a>
+            <a href="mailto:info@billnode.com" data-cursor>Email</a>
           </div>
           <p>© {new Date().getFullYear()} BillNode. All rights reserved.</p>
         </div>

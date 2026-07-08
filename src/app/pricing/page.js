@@ -292,33 +292,15 @@ export default function PricingPage() {
   }, [loaderFinished]);
 
   return (
-    <div 
-      ref={pageRef} 
-      className="theme-dark" 
-      style={{
-        background: "#14130f",
-        color: "#f7f5f0",
-        minHeight: "100vh",
-        "--bg": "#14130f",
-        "--bg-2": "#1a1916",
-        "--bg-3": "#24231f",
-        "--ink": "#f7f5f0",
-        "--ink-2": "#dcdad4",
-        "--muted": "#a8a59b",
-        "--muted-2": "#7a776e",
-        "--line": "rgba(255, 255, 255, 0.12)",
-        "--line-2": "rgba(255, 255, 255, 0.07)",
-        "--orange-soft": "rgba(255, 90, 31, 0.15)"
-      }}
-    >
+    <div ref={pageRef} style={{ minHeight: "100vh" }}>
       <CustomCursor />
       <Header />
       <main id="top">
-        {/* ============== DISTINCT GLOWING DARK HERO ============== */}
+        {/* ============== HERO ============== */}
         <section className="hero pt-40 pb-16 min-h-[80svh] flex flex-col justify-center items-center text-center relative overflow-hidden" id="hero">
           <div className="hero__bg" aria-hidden="true">
-            <span className="blob blob--1" style={{ background: "radial-gradient(circle, rgba(255,90,31,0.22), transparent 70%)" }}></span>
-            <span className="blob blob--2" style={{ background: "radial-gradient(circle, rgba(130,90,255,0.22), transparent 70%)" }}></span>
+            <span className="blob blob--1" style={{ background: "radial-gradient(circle, rgba(255,90,31,0.10), transparent 70%)" }}></span>
+            <span className="blob blob--2" style={{ background: "radial-gradient(circle, rgba(130,90,255,0.08), transparent 70%)" }}></span>
           </div>
 
           <div className="hero__top">
@@ -338,13 +320,13 @@ export default function PricingPage() {
             </p>
             <div className="hero__actions flex gap-4" data-reveal="up">
               <a href="#plans" className="btn btn--orange btn--lg" data-magnetic data-cursor>See plans grid</a>
-              <a href="#faq" className="btn btn--ghost btn--lg border-[var(--line)] text-white hover:bg-white/10" data-magnetic data-cursor>View FAQ queries</a>
+               <a href="#faq" className="btn btn--ghost btn--lg border-[var(--line)]" data-magnetic data-cursor>View FAQ queries</a>
             </div>
           </div>
         </section>
 
-        {/* ============== PLANS GRID (skined dark) ============== */}
-        <section className="pricing" id="plans" style={{ background: "var(--bg)" }}>
+        {/* ============== PLANS GRID ============== */}
+        <section className="pricing" id="plans" style={{ background: "#ffffff" }}>
           <div className="pricing__head" style={{ marginBottom: "50px" }}>
             <h2 className="h-section">Simple packages</h2>
             <div className={`toggle ${billingCycle === "annual" ? "is-annual" : ""}`} id="priceToggle">
@@ -380,7 +362,7 @@ export default function PricingPage() {
                 <li>Global notice board</li>
                 <li>User &amp; admin reports</li>
               </ul>
-              <a href="#ask" className="btn btn--ghost btn--block border-[var(--line)] text-white hover:bg-white/10" data-cursor>Get started</a>
+               <a href="#ask" className="btn btn--ghost btn--block border-[var(--line)]" data-cursor>Get started</a>
             </div>
 
             {/* Inverted layout: White featured card on black page */}
@@ -413,13 +395,13 @@ export default function PricingPage() {
                 <li>Dedicated manager</li>
                 <li>SSO &amp; advanced security</li>
               </ul>
-              <a href="#ask" className="btn btn--ghost btn--block border-[var(--line)] text-white hover:bg-white/10" data-cursor>Contact sales</a>
+               <a href="#ask" className="btn btn--ghost btn--block border-[var(--line)]" data-cursor>Contact sales</a>
             </div>
           </div>
         </section>
 
         {/* ============== FAQ ACCORDIONS ============== */}
-        <section className="services" id="faq" style={{ background: "var(--bg-2)" }}>
+        <section className="services" id="faq" style={{ background: "#ffffff" }}>
           <div className="services__head" style={{ marginBottom: "50px" }}>
             <h2 className="h-section">Frequently<br />asked queries</h2>
             <p className="services__lead text-[var(--ink-2)]">Clear, simple answers to the most common questions about BillNode timesheets and contracts.</p>

@@ -344,7 +344,7 @@ export default function ContactPage() {
                 </div>
                 <div className="flex flex-col">
                   <span className="text-[10px] font-semibold text-white/70 uppercase tracking-wider">Email us</span>
-                  <a href="mailto:info@billnode.com" className="text-sm lg:text-base font-bold text-white hover:text-[#14130f] transition-colors">
+                  <a href="mailto:info@billnode.com" className="white-anchor text-sm lg:text-base font-bold text-white hover:text-[#14130f] transition-colors">
                     info@billnode.com
                   </a>
                 </div>
@@ -482,7 +482,7 @@ export default function ContactPage() {
         </section> */}
 
         {/* ============== TICKER ============== */}
-        <section className="ticker" aria-hidden="true" style={{ marginBlock: "40px 0" }}>
+        <section className="ticker" aria-hidden="true" style={{ marginBlock: "0px 0" }}>
           <div className="ticker__track" id="ticker">
             <span>Always connected</span><b>✦</b><span>Active support</span><b>✦</b><span>Drop us a line</span><b>✦</b><span>24h response</span><b>✦</b>
           </div>

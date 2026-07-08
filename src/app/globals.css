@@ -37,6 +37,12 @@ a {
   text-decoration: none;
 }
 
+.white-anchor {
+  color: white;
+  text-decoration: none;
+  cursor: pointer
+}
+
 button {
   font: inherit;
   color: inherit;
@@ -813,7 +819,7 @@ body:has(button:hover) {
   font-weight: 600;
   letter-spacing: -.04em;
   line-height: .92;
-  font-size: clamp(3rem, 12vw, 12rem);
+  font-size: clamp(3rem, 12vw, 11rem);
   margin: auto 0;
 }
 
@@ -824,12 +830,14 @@ body:has(button:hover) {
 
 .hero__title .w {
   display: inline-block;
+  padding-bottom: 20px;
 }
 
 .hero__title em.serif {
   color: var(--orange);
   font-weight: 400;
   letter-spacing: -.01em;
+  padding-bottom: 20px;
 }
 
 .hero__foot {
@@ -1257,8 +1265,10 @@ body:has(button:hover) {
 }
 
 .wcard__img img {
-  width: 100%;
-  height: 100%;
+   max-width: 100%;
+  max-height: 100%;
+   width: auto;
+  height: auto;
   object-fit: contain;
   object-position: center;
   display: block;
@@ -1273,7 +1283,6 @@ body:has(button:hover) {
   background: var(--bg-2);
   border: 1px solid var(--line);
   box-shadow: 0 8px 24px -8px rgba(28, 22, 16, .1);
-  display: grid;
   place-items: center;
   cursor: pointer;
   transition: box-shadow .3s var(--ease), transform .3s var(--ease);
@@ -1989,7 +1998,176 @@ body:has(button:hover) {
 }
 
 /* =====================================================================
-   FOOTER (dark)
+    PRODUCT TOUR — CINEMATIC SCRAMBLE
+   ===================================================================== */
+.product-tour .services__head {
+  display: block;
+  grid-template-columns: unset;
+  text-align: center;
+  max-width: 800px;
+  margin-inline: auto;
+  margin-top: 80px;
+}
+
+.product-tour .services__lead {
+  justify-self: center;
+  margin-inline: auto;
+}
+.product-tour {
+  position: relative;
+  height: 100vh;
+  overflow: hidden;
+  background: var(--bg-2);
+}
+
+.product-tour__pin {
+  overflow: hidden;
+  height: 100%;
+}
+
+.product-tour__track {
+  display: flex;
+  width: max-content;
+  will-change: transform;
+}
+
+.feature-slide {
+  width: 100vw;
+  min-width: 100vw;
+  height: 100%;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(50px, 10vh, 120px) var(--pad);
+  box-sizing: border-box;
+}
+
+.feature-slide__inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(60px, 8vw, 140px);
+  align-items: center;
+  max-width: 1200px;
+  width: 100%;
+}
+
+.feature-split--reverse {
+  direction: rtl;
+}
+
+.feature-split--reverse > * {
+  direction: ltr;
+}
+
+.feature-split__visual {
+  position: relative;
+}
+
+.feature-visual {
+  position: relative;
+  width: 100%;
+  max-width: 520px;
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(10px);
+  border-radius: 24px;
+  border: 1px solid var(--line);
+  box-shadow: 0 30px 70px -34px rgba(28, 22, 16, 0.3);
+  transition: transform 0.5s var(--ease);
+}
+
+.feature-visual:hover {
+  transform: translateY(-4px);
+}
+
+.feature-visual img {
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
+  border: 1px solid var(--line-2);
+  display: block;
+}
+
+.feature-visual__idx {
+  position: absolute;
+  top: 14px;
+  right: 18px;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--muted-2);
+  z-index: 2;
+}
+
+.feature-split__copy {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.feature-split__title {
+  font-size: clamp(1.8rem, 3.4vw, 2.6rem);
+  font-weight: 600;
+  letter-spacing: -.02em;
+  line-height: 1.2;
+  color: var(--ink);
+}
+
+.feature-split__desc {
+  color: var(--ink-2);
+  font-size: 1.15rem;
+  font-weight: 500;
+  line-height: 1.8;
+  max-width: 55ch;
+}
+
+.product-tour .services__lead {
+  font-size: 1.35rem;
+  line-height: 1.7;
+}
+
+.feature-split__title {
+  font-size: clamp(1.8rem, 3.4vw, 2.6rem);
+  font-weight: 600;
+  letter-spacing: -.02em;
+  line-height: 1.1;
+  color: var(--ink);
+}
+
+.feature-split__desc {
+  color: var(--ink-2);
+  font-size: 1.15rem;
+  font-weight: 500;
+  line-height: 1.6;
+  max-width: 52ch;
+}
+
+.feature-split__copy .eyebrow {
+  margin-bottom: 8px;
+}
+
+.feature-split__copy .btn--ghost {
+  margin-top: 8px;
+  align-self: flex-start;
+}
+
+@media (max-width: 880px) {
+  .feature-slide__inner {
+    grid-template-columns: 1fr;
+    gap: 48px;
+  }
+
+  .feature-split--reverse {
+    direction: ltr;
+  }
+
+  .feature-visual {
+    max-width: 100%;
+  }
+}
+
+/* =====================================================================
+     FOOTER (dark)
    ===================================================================== */
 .footer {
   background: var(--ink);
@@ -2092,46 +2270,6 @@ body:has(button:hover) {
   * {
     scroll-behavior: auto !important;
   }
-}
-
-/* dark theme page overrides */
-.theme-dark .nav.is-scrolled {
-  background: rgba(20, 19, 15, .88) !important;
-}
-
-.theme-dark .toggle {
-  background: var(--bg-2) !important;
-}
-
-.theme-dark .toggle__slider {
-  background: #fff !important;
-}
-
-.theme-dark .toggle__opt.is-on {
-  color: #14130f !important;
-}
-
-.theme-dark .plan--featured {
-  background: #fff !important;
-  color: #14130f !important;
-  box-shadow: 0 40px 90px -40px rgba(0, 0, 0, .6) !important;
-}
-
-.theme-dark .plan--featured .plan__desc {
-  color: rgba(20, 19, 15, .6) !important;
-}
-
-.theme-dark .plan--featured .plan__price small {
-  color: rgba(20, 19, 15, .6) !important;
-}
-
-.theme-dark .plan--featured .plan__feats li::before {
-  background: rgba(255, 90, 31, .12) !important;
-}
-
-.theme-dark .plan--featured .btn--orange {
-  background: var(--orange) !important;
-  color: #fff !important;
 }
 
 /* Contact Page Grid Fix */

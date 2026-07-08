@@ -50,25 +50,25 @@ export default function FeaturesPage() {
       el.innerHTML = parts.map((p) => `<span class="rline"><span class="rline__i">${p}</span></span>`).join("");
       return $$(".rline__i", el);
     }
-    
+
     function splitWords(el) {
-      const nodes = Array.from(el.childNodes); 
+      const nodes = Array.from(el.childNodes);
       el.innerHTML = "";
       nodes.forEach((node) => {
         if (node.nodeType === 3) {
           node.textContent.split(/(\s+)/).forEach((tok) => {
-            if (!tok.trim()) { 
-              el.appendChild(document.createTextNode(tok)); 
-              return; 
+            if (!tok.trim()) {
+              el.appendChild(document.createTextNode(tok));
+              return;
             }
-            const s = document.createElement("span"); 
-            s.className = "rword"; 
-            s.textContent = tok; 
+            const s = document.createElement("span");
+            s.className = "rword";
+            s.textContent = tok;
             el.appendChild(s);
           });
-        } else if (node.nodeType === 1) { 
-          node.classList.add("rword"); 
-          el.appendChild(node); 
+        } else if (node.nodeType === 1) {
+          node.classList.add("rword");
+          el.appendChild(node);
         } else {
           el.appendChild(node);
         }
@@ -172,6 +172,67 @@ export default function FeaturesPage() {
 
       gsap.from(".srv", { y: 44, opacity: 0, duration: 0.9, ease: "power3.out", stagger: 0.09, scrollTrigger: { trigger: ".srv-list", start: "top 82%" } });
 
+      const showcaseTrack = $("#showcaseTrack");
+      const showcaseSection = $(".product-tour");
+      if (showcaseTrack && showcaseSection) {
+        const images = showcaseTrack.querySelectorAll("img");
+        Promise.all(
+          [...images].map(
+            (img) =>
+              img.complete
+                ? Promise.resolve()
+                : new Promise((resolve) => {
+                    img.onload = resolve;
+                    img.onerror = resolve;
+                  })
+          )
+        ).then(() => {
+          ScrollTrigger.refresh();
+        });
+
+        const dist = () => Math.max(0, showcaseTrack.scrollWidth - window.innerWidth);
+        const st = gsap.to(showcaseTrack, {
+          x: () => -dist(),
+          ease: "none",
+          scrollTrigger: {
+            trigger: showcaseSection,
+            start: "top top",
+            end: () => "+=" + (dist() + window.innerWidth),
+            pin: ".product-tour",
+            scrub: 1,
+            anticipatePin: 1,
+            invalidateOnRefresh: true,
+          },
+        });
+
+        $$(".feature-slide").forEach((slide) => {
+          const visual = slide.querySelector(".feature-slide__visual");
+          const copy = slide.querySelector(".feature-split__copy");
+          const isReversed = slide.querySelector(".feature-slide__inner")?.classList.contains("feature-split--reverse");
+
+          const tl = gsap.timeline({
+            scrollTrigger: {
+              trigger: slide,
+              containerAnimation: st,
+              start: "left right",
+              end: "right left",
+              scrub: 1,
+            },
+          });
+
+          const enterDist = isReversed ? -150 : 150;
+          const exitDist = isReversed ? 150 : -150;
+
+          tl.fromTo(visual, { x: enterDist, opacity: 0 }, { x: 0, opacity: 1, duration: 0.35, ease: "power3.out" }, 0);
+          tl.fromTo(copy, { x: -enterDist, opacity: 0 }, { x: 0, opacity: 1, duration: 0.35, ease: "power3.out" }, 0);
+
+          tl.to({}, { duration: 0.3 });
+
+          tl.to(visual, { x: exitDist, opacity: 0, duration: 0.35, ease: "power3.in" }, 0.65);
+          tl.to(copy, { x: -exitDist, opacity: 0, duration: 0.35, ease: "power3.in" }, 0.65);
+        });
+      }
+
       const nav = $("#nav");
       if (nav) {
         let last = 0;
@@ -241,7 +302,7 @@ export default function FeaturesPage() {
             <span className="blob blob--2"></span>
           </div>
 
-          <div className="flex flex-col gap-6 w-full">
+          <div className="flex flex-col gap-1 w-full">
             <div className="hero__mobile-tags flex justify-between font-semibold text-[var(--ink-2)]">
               <span className="hero__tag" data-reveal="up"><span className="dot pulse"></span> Live time entry features</span>
               <span className="hero__tag hero__tag--r elementor-hidden-mobile" data-reveal="up">Productivity multiplied by data</span>
@@ -249,7 +310,7 @@ export default function FeaturesPage() {
 
             <h1 className="hero__title text-5xl lg:text-7xl font-semibold leading-none tracking-tight" style={{ margin: "0" }}>
               <span className="line"><span className="w">Streamline the</span></span>
-              <span className="line"><span className="w">time entry</span></span>
+              <span className="line"><span className="w ">time entry</span></span>
               <span className="line"><span className="w">process</span> <em className="w serif text-[var(--orange)] font-normal">effortlessly</em><span className="w">.</span></span>
             </h1>
 
@@ -268,19 +329,19 @@ export default function FeaturesPage() {
 
           {/* Skewed mockup illustration on the right */}
           <div data-reveal="fade" className="flex justify-center items-center w-full mt-8 lg:mt-0">
-            <div style={{ 
-              width: "100%", 
+            <div style={{
+              width: "100%",
               maxWidth: "480px",
-              padding: "20px", 
-              background: "rgba(255,255,255,0.75)", 
+              padding: "20px",
+              background: "rgba(255,255,255,0.75)",
               backdropFilter: "blur(10px)",
-              borderRadius: "24px", 
-              border: "1px solid var(--line)", 
+              borderRadius: "24px",
+              border: "1px solid var(--line)",
               boxShadow: "0 30px 70px -34px rgba(28,22,16,0.3)",
               transform: "perspective(1000px) rotateY(-10deg) rotateX(6deg)",
               transition: "transform 0.5s var(--ease)"
             }}
-            className="hover:scale-[1.03]"
+              className="hover:scale-[1.03]"
             >
               <img src="/assets/s1111.png" alt="Reports View Mockup" style={{ width: "100%", height: "auto", borderRadius: "12px", border: "1px solid var(--line-2)" }} />
             </div>
@@ -367,14 +428,14 @@ export default function FeaturesPage() {
         <section className="services flex flex-col lg:grid lg:grid-cols-[1fr_1.1fr] items-center gap-10 lg:gap-16" style={{ background: "var(--bg)" }}>
           {/* Left Column: Full Mockup Image */}
           <div data-reveal="fade" className="flex justify-center items-center w-full">
-            <div style={{ 
-              width: "100%", 
+            <div style={{
+              width: "100%",
               maxWidth: "540px",
-              padding: "20px", 
-              background: "rgba(255,255,255,0.75)", 
+              padding: "20px",
+              background: "rgba(255,255,255,0.75)",
               backdropFilter: "blur(10px)",
-              borderRadius: "24px", 
-              border: "1px solid var(--line)", 
+              borderRadius: "24px",
+              border: "1px solid var(--line)",
               boxShadow: "0 30px 70px -34px rgba(28,22,16,0.3)",
             }}
             >
@@ -412,6 +473,155 @@ export default function FeaturesPage() {
         </section>
 
 
+        {/* ============== PRODUCT TOUR — CINEMATIC SCRAMBLE ============== */}
+        <section className="product-tour" id="productTour">
+          <div className="services__head">
+            <span className="eyebrow" data-reveal="up"><i></i> Product tour</span>
+            <h2 className="h-section" data-reveal="lines">Inside BillNode</h2>
+            <p className="services__lead" data-reveal="up">From first tracked hour to final invoice — explore every view built for your team.</p>
+          </div>
+
+          <div className="product-tour__pin">
+            <div className="product-tour__track" id="showcaseTrack">
+              <article className="feature-slide">
+                <div className="feature-slide__inner">
+                  <div className="feature-split__visual">
+                    <div className="feature-visual">
+                      <span className="feature-visual__idx">01</span>
+                      <img src="/assets/s1111.png" alt="BillNode Reports view" decoding="async" />
+                    </div>
+                  </div>
+                  <div className="feature-split__copy">
+                    <span className="eyebrow"><i></i> Reporting</span>
+                    <h3 className="feature-split__title">Generate detailed reports</h3>
+                    <p className="feature-split__desc">Create comprehensive timesheet reports and client invoices in CSV or PDF format. Search, filter, and export data with a single click — no manual spreadsheet work needed.</p>
+                    <a href="#how-it-works" className="btn btn--ghost" data-cursor>See workflow <i className="arr">→</i></a>
+                  </div>
+                </div>
+              </article>
+
+              <article className="feature-slide">
+                <div className="feature-slide__inner feature-split--reverse">
+                  <div className="feature-split__visual">
+                    <div className="feature-visual">
+                      <span className="feature-visual__idx">02</span>
+                      <img src="/assets/new15.png" alt="BillNode Dashboard Stats" decoding="async" />
+                    </div>
+                  </div>
+                  <div className="feature-split__copy">
+                    <span className="eyebrow"><i></i> Analytics</span>
+                    <h3 className="feature-split__title">Dashboard stats at a glance</h3>
+                    <p className="feature-split__desc">Monitor live employee workload, pending review requests, and invoice statuses from a single dashboard. Make informed decisions without jumping between tools.</p>
+                    <a href="#how-it-works" className="btn btn--ghost" data-cursor>See workflow <i className="arr">→</i></a>
+                  </div>
+                </div>
+              </article>
+
+              <article className="feature-slide">
+                <div className="feature-slide__inner">
+                  <div className="feature-split__visual">
+                    <div className="feature-visual">
+                      <span className="feature-visual__idx">03</span>
+                      <img src="/assets/s2.png" alt="BillNode Global Notice Board" decoding="async" />
+                    </div>
+                  </div>
+                  <div className="feature-split__copy">
+                    <span className="eyebrow"><i></i> Communication</span>
+                    <h3 className="feature-split__title">Global notice board</h3>
+                    <p className="feature-split__desc">Keep every team member aligned with company-wide bulletins, due date notices, and general announcements. Centralize communication so nothing slips through.</p>
+                    <a href="#how-it-works" className="btn btn--ghost" data-cursor>See workflow <i className="arr">→</i></a>
+                  </div>
+                </div>
+              </article>
+
+              <article className="feature-slide">
+                <div className="feature-slide__inner feature-split--reverse">
+                  <div className="feature-split__visual">
+                    <div className="feature-visual">
+                      <span className="feature-visual__idx">04</span>
+                      <img src="/assets/subscriptions.png" alt="BillNode Subscriptions management" decoding="async" />
+                    </div>
+                  </div>
+                  <div className="feature-split__copy">
+                    <span className="eyebrow"><i></i> Billing</span>
+                    <h3 className="feature-split__title">Subscriptions & renewals</h3>
+                    <p className="feature-split__desc">Track subscription changes, monitor renewals, and manage payments across all plans from one panel. Stay on top of billing cycles without manual follow-ups.</p>
+                    <a href="#how-it-works" className="btn btn--ghost" data-cursor>See workflow <i className="arr">→</i></a>
+                  </div>
+                </div>
+              </article>
+
+              <article className="feature-slide">
+                <div className="feature-slide__inner">
+                  <div className="feature-split__visual">
+                    <div className="feature-visual">
+                      <span className="feature-visual__idx">05</span>
+                      <img src="/assets/time_entry_listing.png" alt="BillNode Time Entry Listing" decoding="async" />
+                    </div>
+                  </div>
+                  <div className="feature-split__copy">
+                    <span className="eyebrow"><i></i> Time tracking</span>
+                    <h3 className="feature-split__title">Time entry made simple</h3>
+                    <p className="feature-split__desc">Log work hours by project and task, edit descriptions, and flag billable items instantly. Structured entry formats eliminate guesswork and speed up approvals.</p>
+                    <a href="#how-it-works" className="btn btn--ghost" data-cursor>See workflow <i className="arr">→</i></a>
+                  </div>
+                </div>
+              </article>
+
+              <article className="feature-slide">
+                <div className="feature-slide__inner feature-split--reverse">
+                  <div className="feature-split__visual">
+                    <div className="feature-visual">
+                      <span className="feature-visual__idx">06</span>
+                      <img src="/assets/locations_listing.png" alt="BillNode Location Listing" decoding="async" />
+                    </div>
+                  </div>
+                  <div className="feature-split__copy">
+                    <span className="eyebrow"><i></i> Operations</span>
+                    <h3 className="feature-split__title">Client locations</h3>
+                    <p className="feature-split__desc">Organize and manage client locations for accurate billing and reporting across different sites. Ensure every entry is tied to the right project and place.</p>
+                    <a href="#how-it-works" className="btn btn--ghost" data-cursor>See workflow <i className="arr">→</i></a>
+                  </div>
+                </div>
+              </article>
+
+              <article className="feature-slide">
+                <div className="feature-slide__inner">
+                  <div className="feature-split__visual">
+                    <div className="feature-visual">
+                      <span className="feature-visual__idx">07</span>
+                      <img src="/assets/s4.png" alt="BillNode Admin Reports" decoding="async" />
+                    </div>
+                  </div>
+                  <div className="feature-split__copy">
+                    <span className="eyebrow"><i></i> Insights</span>
+                    <h3 className="feature-split__title">Admin reports</h3>
+                    <p className="feature-split__desc">Access role-based and team-based reports that turn raw time data into actionable insights. Identify trends, optimize staffing, and reduce admin overhead.</p>
+                    <a href="#how-it-works" className="btn btn--ghost" data-cursor>See workflow <i className="arr">→</i></a>
+                  </div>
+                </div>
+              </article>
+
+              <article className="feature-slide">
+                <div className="feature-slide__inner feature-split--reverse">
+                  <div className="feature-split__visual">
+                    <div className="feature-visual">
+                      <span className="feature-visual__idx">08</span>
+                      <img src="/assets/s5.png" alt="BillNode monitor at a glance" decoding="async" />
+                    </div>
+                  </div>
+                  <div className="feature-split__copy">
+                    <span className="eyebrow"><i></i> Management</span>
+                    <h3 className="feature-split__title">Monitor & manage</h3>
+                    <p className="feature-split__desc">Review pending entries, billable hours, and priority tasks from one unified view. Keep operations transparent and teams accountable with real-time oversight.</p>
+                    <a href="#how-it-works" className="btn btn--ghost" data-cursor>See workflow <i className="arr">→</i></a>
+                  </div>
+                </div>
+              </article>
+            </div>
+          </div>
+        </section>
+
         {/* ============== TICKER ============== */}
         <section className="ticker" aria-hidden="true" style={{ marginBlock: "80px 0" }}>
           <div className="ticker__track" id="ticker">
@@ -426,7 +636,7 @@ export default function FeaturesPage() {
             <span className="line"><span className="w">Ready to track</span></span>
             <span className="line"><span className="w">with</span> <em className="w serif text-[#14130f] font-normal">clarity</em><span className="w">?</span></span>
           </h2>
-          
+
           <div className="flex justify-center" data-reveal="up" style={{ marginTop: "20px" }}>
             <a href="/contact" className="btn btn--dark btn--xl" data-magnetic data-cursor style={{ background: "#14130f", color: "#fff" }}>
               <span>Contact us</span>

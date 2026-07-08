@@ -36,7 +36,7 @@ export default function Footer() {
           <a href="/contact" data-cursor>Contact us</a>
           <a href="#" data-cursor>About</a>
           <a href="#" data-cursor>Careers</a>
-          <a href="mailto:hello@billnode.com" data-cursor>hello@billnode.com</a>
+          <a href="mailto:info@billnode.com" data-cursor>info@billnode.com</a>
         </div>
 
         <div className="footer__col footer__col--r">
