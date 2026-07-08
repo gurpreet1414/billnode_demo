@@ -1,6 +1,25 @@
 "use client";
 
+import { useState, useEffect, useCallback } from "react";
+
 export default function Inside() {
+  const [lightbox, setLightbox] = useState({ open: false, src: "", alt: "" });
+
+  const openLightbox = (src, alt) => setLightbox({ open: true, src, alt });
+  const closeLightbox = useCallback(() => setLightbox({ open: false, src: "", alt: "" }), []);
+
+  useEffect(() => {
+    const onKey = (e) => { if (e.key === "Escape") closeLightbox(); };
+    if (lightbox.open) {
+      document.addEventListener("keydown", onKey);
+      document.body.style.overflow = "hidden";
+    }
+    return () => {
+      document.removeEventListener("keydown", onKey);
+      document.body.style.overflow = "";
+    };
+  }, [lightbox.open, closeLightbox]);
+
   return (
     <section className="work" id="inside">
       <div className="work__pin" id="workPin">
@@ -12,7 +31,7 @@ export default function Inside() {
           </div>
 
           <article className="wcard" data-cursor="view">
-            <div className="wcard__img">
+            <div className="wcard__img" onClick={() => openLightbox("/assets/s1111.png", "BillNode Reports view")}>
               <span className="wcard__idx">01</span>
               <img src="/assets/s1111.png" alt="BillNode Reports view" decoding="async" />
             </div>
@@ -20,15 +39,15 @@ export default function Inside() {
           </article>
 
           <article className="wcard" data-cursor="view">
-            <div className="wcard__img">
+            <div className="wcard__img" onClick={() => openLightbox("/assets/s15.png", "BillNode Dashboard Stats")}>
               <span className="wcard__idx">02</span>
-              <img src="/assets/s15.png" alt="BillNode Dashboard Stats" decoding="async" />
+              <img src="/assets/new15.png" alt="BillNode Dashboard Stats" decoding="async" />
             </div>
             <div className="wcard__meta"><h3>Dashboard stats</h3><span>All stats at your fingertips</span></div>
           </article>
 
           <article className="wcard" data-cursor="view">
-            <div className="wcard__img">
+            <div className="wcard__img" onClick={() => openLightbox("/assets/s2.png", "BillNode Global Notice Board")}>
               <span className="wcard__idx">03</span>
               <img src="/assets/s2.png" alt="BillNode Global Notice Board" decoding="async" />
             </div>
@@ -36,15 +55,15 @@ export default function Inside() {
           </article>
 
           <article className="wcard" data-cursor="view">
-            <div className="wcard__img">
+            <div className="wcard__img" onClick={() => openLightbox("/assets/subscriptions.png", "BillNode Subscriptions management")}>
               <span className="wcard__idx">04</span>
               <img src="/assets/subscriptions.png" alt="BillNode Subscriptions management" decoding="async" />
             </div>
-            <div className="wcard__meta"><h3>subscriptions</h3><span>Monitor renewals and payments</span></div>
+            <div className="wcard__meta"><h3>Subscriptions</h3><span>Monitor renewals and payments</span></div>
           </article>
 
           <article className="wcard" data-cursor="view">
-            <div className="wcard__img">
+            <div className="wcard__img" onClick={() => openLightbox("/assets/time_entry_listing.png", "BillNode Time Entry Listing")}>
               <span className="wcard__idx">05</span>
               <img src="/assets/time_entry_listing.png" alt="BillNode Time Entry Listing" decoding="async" />
             </div>
@@ -52,16 +71,16 @@ export default function Inside() {
           </article>
 
           <article className="wcard" data-cursor="view">
-            <div className="wcard__img">
+            <div className="wcard__img" onClick={() => openLightbox("/assets/locations_listing.png", "BillNode Location Listing")}>
               <span className="wcard__idx">06</span>
               <img src="/assets/locations_listing.png" alt="BillNode Location Listing" decoding="async" />
             </div>
             <div className="wcard__meta"><h3>Client locations</h3><span>Organize and manage client locations</span></div>
           </article>
-          
+
 
           <article className="wcard" data-cursor="view">
-            <div className="wcard__img">
+            <div className="wcard__img" onClick={() => openLightbox("/assets/s4.png", "BillNode Admin Reports")}>
               <span className="wcard__idx">07</span>
               <img src="/assets/s4.png" alt="BillNode Admin Reports" decoding="async" />
             </div>
@@ -69,7 +88,7 @@ export default function Inside() {
           </article>
 
           <article className="wcard" data-cursor="view">
-            <div className="wcard__img">
+            <div className="wcard__img" onClick={() => openLightbox("/assets/s5.png", "BillNode monitor at a glance")}>
               <span className="wcard__idx">08</span>
               <img src="/assets/s5.png" alt="BillNode monitor at a glance" decoding="async" />
             </div>
@@ -83,6 +102,21 @@ export default function Inside() {
             </svg>
           </a>
         </div>
+      </div>
+
+      {/* Lightbox Modal */}
+      <div
+        className={`lightbox-overlay${lightbox.open ? " is-open" : ""}`}
+        onClick={closeLightbox}
+      >
+        <button className="lightbox-close" onClick={closeLightbox} aria-label="Close lightbox">✕</button>
+        {lightbox.src && (
+          <img
+            src={lightbox.src}
+            alt={lightbox.alt}
+            onClick={(e) => e.stopPropagation()}
+          />
+        )}
       </div>
     </section>
   );

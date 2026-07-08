@@ -1,7 +1,7 @@
 "use client";
 import { useState, useEffect } from "react";
 
-export default function Header() {
+export default function Header({ className }) {
   const [calendlyUrl, setCalendlyUrl] = useState("https://calendly.com/billnode-demo/30min");
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
@@ -36,7 +36,7 @@ export default function Header() {
   };
 
   return (
-    <header className={`nav ${isMenuOpen ? "is-open" : ""}`} id="nav">
+    <header className={`nav ${isMenuOpen ? "is-open" : ""} ${className || ""}`} id="nav">
       <a href="/" className="nav__logo" data-magnetic onClick={closeMenu}>
         BillNode<span>®</span>
       </a>

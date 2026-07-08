@@ -305,82 +305,164 @@ export default function ContactPage() {
   return (
     <>
       <CustomCursor />
-      <Header />
+      <Header className="nav--contact" />
       <main id="top">
         {/* ============== DISTINCT SPLIT HERO WITH FLOATING CONTACT DETAILS ============== */}
-        <section className="hero flex flex-col lg:grid lg:grid-cols-[1.2fr_1fr] items-center gap-10 lg:gap-16 pt-36 pb-16 min-h-svh relative overflow-hidden" id="hero">
+        <section className="hero contact-hero-grid items-center pt-36 pb-16 min-h-svh relative overflow-hidden" id="hero" style={{ background: "var(--orange)" }}>
           <div className="hero__bg" aria-hidden="true">
             <span className="blob blob--1"></span>
             <span className="blob blob--2"></span>
           </div>
 
-          <div className="flex flex-col gap-6 w-full">
-            <div className="flex justify-between font-semibold text-[var(--ink-2)]">
-              <span className="hero__tag" data-reveal="up"><span className="dot pulse"></span> Contact us</span>
-              <span className="hero__tag hero__tag--r elementor-hidden-mobile" data-reveal="up">We're just an email away</span>
-            </div>
+          {/* Decorative floating dots/circles */}
+          <div className="absolute right-[5%] bottom-[12%] w-[80px] h-[80px] rounded-full border border-white/15 hidden lg:block" aria-hidden="true"></div>
+          <div className="absolute left-[40%] bottom-[40%] w-6 h-6 rounded-full bg-white/10 blur-[2px] hidden lg:block" aria-hidden="true"></div>
+          <div className="absolute right-[45%] top-[25%] w-8 h-8 rounded-full bg-white/10 blur-[3px] hidden lg:block" aria-hidden="true"></div>
 
-            <h1 className="hero__title text-5xl lg:text-7xl font-semibold leading-none tracking-tight" style={{ margin: "0" }}>
-              <span className="line"><span className="w">Get in touch</span></span>
-              <span className="line"><span className="w">with us</span></span>
-              <span className="line"><span className="w">directly</span> <em className="w serif text-[var(--orange)] font-normal">today</em><span className="w">.</span></span>
+          {/* Left Column: Get In Touch */}
+          <div className="flex flex-col gap-6 w-full text-left z-10">
+            <span className="text-xs lg:text-sm font-bold tracking-wider text-white/80 uppercase" data-reveal="up">
+              Get in touch
+            </span>
+
+            <h1 className="text-6xl lg:text-8xl font-semibold leading-[1.02] tracking-tight text-white animate-text" style={{ margin: "0" }} data-reveal="up">
+              <span className="block">Send us a</span>
+              <span className="block">direct <span className="serif text-[#14130f] font-normal italic lowercase">message.</span></span>
             </h1>
 
-            <p className="hero__sub text-lg lg:text-xl font-medium text-[var(--ink-2)]" data-reveal="lines">
-              Need assistance with your portal setup, custom billing configurations,<br />or team management? Drop us a line below.
+            <p className="text-base lg:text-lg font-medium text-white/90 max-w-[48ch]" data-reveal="lines">
+              Submit your query
             </p>
-            <div className="hero__actions" data-reveal="up" style={{ marginTop: "12px" }}>
-              <a href="#message" className="btn btn--orange btn--lg" data-magnetic data-cursor>Send a message</a>
-              <a href="mailto:info@billnode.com" className="btn btn--ghost btn--lg" data-magnetic data-cursor>Email directly</a>
+
+            <div className="flex flex-col gap-5 mt-4" data-reveal="fade">
+              {/* Email us */}
+              <div className="flex items-center gap-4">
+                <div className="flex items-center justify-center w-11 h-11 rounded-[16px] bg-white/15 text-white shrink-0">
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75"></path>
+                  </svg>
+                </div>
+                <div className="flex flex-col">
+                  <span className="text-[10px] font-semibold text-white/70 uppercase tracking-wider">Email us</span>
+                  <a href="mailto:info@billnode.com" className="text-sm lg:text-base font-bold text-white hover:text-[#14130f] transition-colors">
+                    info@billnode.com
+                  </a>
+                </div>
+              </div>
+
+              {/* Response time */}
+              <div className="flex items-center gap-4">
+                <div className="flex items-center justify-center w-11 h-11 rounded-[16px] bg-white/15 text-white shrink-0">
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                  </svg>
+                </div>
+                <div className="flex flex-col">
+                  <span className="text-[10px] font-semibold text-white/70 uppercase tracking-wider">Response time</span>
+                  <span className="text-sm lg:text-base font-bold text-white">
+                    Within 1 business day
+                  </span>
+                </div>
+              </div>
+
+              {/* Studio */}
+              <div className="flex items-center gap-4">
+                <div className="flex items-center justify-center w-11 h-11 rounded-[16px] bg-white/15 text-white shrink-0">
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"></path>
+                  </svg>
+                </div>
+                <div className="flex flex-col">
+                  <span className="text-[10px] font-semibold text-white/70 uppercase tracking-wider">Studio</span>
+                  <span className="text-sm lg:text-base font-bold text-white">
+                    Lisbon, Portugal
+                  </span>
+                </div>
+              </div>
             </div>
           </div>
 
-          {/* Integrated floating details card on the right */}
-          <div data-reveal="fade" className="flex justify-center items-center w-full mt-8 lg:mt-0">
-            <div style={{
-              width: "100%",
-              maxWidth: "460px",
-              padding: "40px 30px",
-              background: "rgba(255,255,255,0.75)",
-              backdropFilter: "blur(10px)",
-              borderRadius: "28px",
-              border: "1px solid var(--line)",
-              boxShadow: "0 40px 90px -30px rgba(28,22,16,0.2)",
-            }}
-              className="flex flex-col gap-6"
+          {/* Right Column: Direct Message Form inside a solid white card */}
+          <div data-reveal="fade" className="flex justify-center items-center w-full mt-8 lg:mt-0 z-10">
+            <div
+              style={{
+                width: "100%",
+                maxWidth: "520px",
+                padding: "44px 40px",
+                background: "#ffffff",
+                borderRadius: "28px",
+                border: "1px solid rgba(20,19,15,0.08)",
+                boxShadow: "0 40px 90px -30px rgba(28,22,16,0.15)",
+              }}
+              className="flex flex-col gap-5 text-left relative z-10"
             >
-              <div>
-                <span style={{ textTransform: "uppercase", fontSize: "0.85rem", letterSpacing: "0.08em", color: "var(--muted)", fontWeight: 600 }}>Email Address</span>
-                <a href="mailto:info@billnode.com" className="block text-2xl font-semibold mt-1 text-[var(--orange)] hover:underline" data-magnetic data-cursor>
-                  info@billnode.com
+              <div className="flex flex-col gap-8">
+
+                <div className="w-16 h-16 rounded-3xl bg-orange-50 flex items-center justify-center">
+                  <svg
+                    width="30"
+                    height="30"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="#ff5a1f"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
+                    <path d="M4 4h16v16H4z" />
+                    <path d="m22 6-10 7L2 6" />
+                  </svg>
+                </div>
+
+                <div className="space-y-3">
+                  <p className="text-[12px] font-bold uppercase tracking-[0.25em] text-slate-500">
+                    START A CONVERSATION
+                  </p>
+
+                  <h2 className="text-4xl font-extrabold text-slate-900 leading-tight">
+                    Interested in our product?
+                  </h2>
+
+                  <p className="text-lg leading-8 text-slate-600">
+                    Have questions about features, pricing, or implementation? Send us an email and we'll get back to you within one business day.
+                  </p>
+                </div>
+
+                <a
+                  href="mailto:info@billnode.com"
+                  className="btn btn--orange btn--lg w-full justify-center shadow-md"
+                >
+                  <span>Send us an Email →</span>
                 </a>
-              </div>
-              <div style={{ borderTop: "1px solid var(--line-2)", paddingTop: "20px" }}>
-                <span style={{ textTransform: "uppercase", fontSize: "0.85rem", letterSpacing: "0.08em", color: "var(--muted)", fontWeight: 600 }}>Phone Support</span>
-                <span className="block text-2xl font-semibold mt-1 text-[var(--ink)]">
-                  +1 415-854-8023
-                </span>
-              </div>
-              <div style={{ borderTop: "1px solid var(--line-2)", paddingTop: "20px" }}>
-                <span style={{ textTransform: "uppercase", fontSize: "0.85rem", letterSpacing: "0.08em", color: "var(--muted)", fontWeight: 600 }}>Office HQ</span>
-                <span className="block text-xl font-medium mt-1 text-[var(--ink)]">
-                  Lisbon, Portugal
-                </span>
-              </div>
-              <div style={{ borderTop: "1px solid var(--line-2)", paddingTop: "20px" }}>
-                <span style={{ textTransform: "uppercase", fontSize: "0.85rem", letterSpacing: "0.08em", color: "var(--muted)", fontWeight: 600 }}>Active Hours</span>
-                <span className="block text-lg font-medium mt-1 text-[var(--ink-2)]">
-                  9:00 - 18:00 WET (Mon - Fri)
-                </span>
+
+                <div className="border-t border-slate-200 pt-6">
+                  <span className="text-sm font-bold text-slate-800">
+                    Helpful details to include
+                  </span>
+
+                  <div className="flex flex-wrap gap-3 mt-4">
+                    <span className="bg-slate-100 text-slate-600 rounded-full px-5 py-2 text-sm font-medium">
+                      Channel link
+                    </span>
+
+                    <span className="bg-slate-100 text-slate-600 rounded-full px-5 py-2 text-sm font-medium">
+                      Service needed
+                    </span>
+
+                    <span className="bg-slate-100 text-slate-600 rounded-full px-5 py-2 text-sm font-medium">
+                      Timeline
+                    </span>
+                  </div>
+                </div>
+
               </div>
             </div>
           </div>
-
-          <div className="hero__scroll" data-reveal="fade"><span>Scroll</span><i></i></div>
         </section>
 
         {/* ============== OFFICE CARD SHOWCASE ============== */}
-        <section className="services" style={{ background: "var(--bg)" }}>
+        {/* <section className="services" style={{ background: "var(--bg)" }}>
           <div className="services__head" style={{ marginBottom: "50px" }}>
             <h2 className="h-section">Our local workspace</h2>
             <p className="services__lead">We always welcome our clients to our office. Drop in to meet our operations managers.</p>
@@ -397,231 +479,12 @@ export default function ContactPage() {
               </div>
             </article>
           </div>
-        </section>
+        </section> */}
 
         {/* ============== TICKER ============== */}
         <section className="ticker" aria-hidden="true" style={{ marginBlock: "40px 0" }}>
           <div className="ticker__track" id="ticker">
             <span>Always connected</span><b>✦</b><span>Active support</span><b>✦</b><span>Drop us a line</span><b>✦</b><span>24h response</span><b>✦</b>
-          </div>
-        </section>
-
-        {/* ============== MESSAGE FORM ============== */}
-        <section className="cta" id="message">
-          <p className="cta__kick" data-reveal="up">Submit your query</p>
-          <h2 className="cta__title" style={{ marginBottom: "30px" }}>
-            <span className="line"><span className="w">Send us a</span></span>
-            <span className="line"><span className="w">direct</span> <em className="w serif text-[#14130f] font-normal">message</em><span className="w">.</span></span>
-          </h2>
-
-          <div className="max-w-xl mx-auto text-left" style={{ marginInline: "auto", padding: "10px", maxWidth: "600px" }} data-reveal="up">
-            <form onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column", gap: "24px" }}>
-              <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "24px" }}>
-                <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
-                  <label style={{ fontWeight: 600, color: "rgba(255,255,255,0.9)", fontSize: "1.05rem" }}>Enter your name</label>
-                  <input
-                    type="text"
-                    placeholder="Enter your name"
-                    value={name}
-                    onChange={(e) => setName(e.target.value)}
-                    style={{
-                      width: "100%",
-                      height: "56px",
-                      borderRadius: "100px",
-                      border: "1px solid rgba(255,255,255,0.3)",
-                      background: "rgba(0,0,0,0.2)",
-                      paddingInline: "24px",
-                      color: "#fff",
-                      outline: "none"
-                    }}
-                    required
-                    disabled={status === "loading"}
-                  />
-                </div>
-                <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
-                  <label style={{ fontWeight: 600, color: "rgba(255,255,255,0.9)", fontSize: "1.05rem" }}>Email address</label>
-                  <input
-                    type="email"
-                    placeholder="Enter your email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    style={{
-                      width: "100%",
-                      height: "56px",
-                      borderRadius: "100px",
-                      border: "1px solid rgba(255,255,255,0.3)",
-                      background: "rgba(0,0,0,0.2)",
-                      paddingInline: "24px",
-                      color: "#fff",
-                      outline: "none"
-                    }}
-                    required
-                    disabled={status === "loading"}
-                  />
-                </div>
-              </div>
-
-              <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "24px" }}>
-                <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
-                  <label style={{ fontWeight: 600, color: "rgba(255,255,255,0.9)", fontSize: "1.05rem" }}>Phone number</label>
-                  <input
-                    type="tel"
-                    placeholder="(123) 456 - 7890"
-                    value={phone}
-                    onChange={(e) => setPhone(e.target.value)}
-                    style={{
-                      width: "100%",
-                      height: "56px",
-                      borderRadius: "100px",
-                      border: "1px solid rgba(255,255,255,0.3)",
-                      background: "rgba(0,0,0,0.2)",
-                      paddingInline: "24px",
-                      color: "#fff",
-                      outline: "none"
-                    }}
-                    required
-                    disabled={status === "loading"}
-                  />
-                </div>
-                <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
-                  <label style={{ fontWeight: 600, color: "rgba(255,255,255,0.9)", fontSize: "1.05rem" }}>Company</label>
-                  <input
-                    type="text"
-                    placeholder="EX Facebook"
-                    value={company}
-                    onChange={(e) => setCompany(e.target.value)}
-                    style={{
-                      width: "100%",
-                      height: "56px",
-                      borderRadius: "100px",
-                      border: "1px solid rgba(255,255,255,0.3)",
-                      background: "rgba(0,0,0,0.2)",
-                      paddingInline: "24px",
-                      color: "#fff",
-                      outline: "none"
-                    }}
-                    required
-                    disabled={status === "loading"}
-                  />
-                </div>
-              </div>
-
-              <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "24px" }}>
-                <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
-                  <label style={{ fontWeight: 600, color: "rgba(255,255,255,0.9)", fontSize: "1.05rem" }}>Industry Type</label>
-                  <input
-                    type="text"
-                    placeholder="Retail/Pharma/Legal..."
-                    value={industry}
-                    onChange={(e) => setIndustry(e.target.value)}
-                    style={{
-                      width: "100%",
-                      height: "56px",
-                      borderRadius: "100px",
-                      border: "1px solid rgba(255,255,255,0.3)",
-                      background: "rgba(0,0,0,0.2)",
-                      paddingInline: "24px",
-                      color: "#fff",
-                      outline: "none"
-                    }}
-                    required
-                    disabled={status === "loading"}
-                  />
-                </div>
-                <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
-                  <label style={{ fontWeight: 600, color: "rgba(255,255,255,0.9)", fontSize: "1.05rem" }}>Plan interested</label>
-                  <div style={{ position: "relative", width: "100%" }}>
-                    <select
-                      value={plan}
-                      onChange={(e) => setPlan(e.target.value)}
-                      style={{
-                        width: "100%",
-                        height: "56px",
-                        borderRadius: "100px",
-                        border: "1px solid rgba(255,255,255,0.3)",
-                        background: "rgba(0,0,0,0.2)",
-                        paddingInline: "24px 40px",
-                        color: "#fff",
-                        outline: "none",
-                        appearance: "none",
-                        cursor: "pointer"
-                      }}
-                      required
-                      disabled={status === "loading"}
-                    >
-                      <option value="Regular" style={{ background: "#14130f" }}>Regular</option>
-                      <option value="Pro" style={{ background: "#14130f" }}>Pro</option>
-                      <option value="Enterprise" style={{ background: "#14130f" }}>Enterprise</option>
-                      <option value="Help Me Decide" style={{ background: "#14130f" }}>Help Me Decide</option>
-                    </select>
-                    <svg
-                      style={{
-                        position: "absolute",
-                        right: "20px",
-                        top: "50%",
-                        transform: "translateY(-50%)",
-                        pointerEvents: "none",
-                        width: "16px",
-                        height: "16px",
-                        color: "rgba(255,255,255,0.6)"
-                      }}
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    >
-                      <polyline points="6 9 12 15 18 9" />
-                    </svg>
-                  </div>
-                </div>
-              </div>
-
-              <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
-                <label style={{ fontWeight: 600, color: "rgba(255,255,255,0.9)", fontSize: "1.05rem" }}>Message</label>
-                <textarea
-                  placeholder="Write your message here..."
-                  value={message}
-                  onChange={(e) => setMessage(e.target.value)}
-                  style={{
-                    width: "100%",
-                    height: "150px",
-                    borderRadius: "20px",
-                    border: "1px solid rgba(255,255,255,0.3)",
-                    background: "rgba(0,0,0,0.2)",
-                    padding: "20px 24px",
-                    color: "#fff",
-                    outline: "none",
-                    resize: "none"
-                  }}
-                  required
-                  disabled={status === "loading"}
-                />
-              </div>
-
-              <button
-                type="submit"
-                className="btn btn--dark btn--lg"
-                data-magnetic
-                data-cursor
-                style={{
-                  background: "#14130f",
-                  color: "#fff",
-                  width: "auto",
-                  minWidth: "180px",
-                  borderRadius: "100px",
-                  paddingInline: "32px",
-                  alignSelf: "flex-start",
-                  marginTop: "10px"
-                }}
-                disabled={status === "loading"}
-              >
-                <span>{status === "loading" ? "Sending message..." : "Send your message"}</span>
-              </button>
-              {status === "success" && <p style={{ color: "#22c55e", fontWeight: 600, marginTop: "10px", textAlign: "left" }}>Message sent successfully!</p>}
-              {status === "error" && <p style={{ color: "#ef4444", fontWeight: 600, marginTop: "10px", textAlign: "left" }}>Error sending. Please verify your .env.local configuration.</p>}
-            </form>
           </div>
         </section>
 
