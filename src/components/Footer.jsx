@@ -34,8 +34,6 @@ export default function Footer() {
         <div className="footer__col">
           <h5>Company</h5>
           <a href="/contact" data-cursor>Contact us</a>
-          <a href="#" data-cursor>About</a>
-          <a href="#" data-cursor>Careers</a>
           <a href="mailto:info@billnode.com" data-cursor>info@billnode.com</a>
         </div>
 
