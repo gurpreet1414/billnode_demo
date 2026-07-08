@@ -1,27 +1,4 @@
-"use client";
-import { useState, useEffect } from "react";
-
 export default function Footer() {
-  const [time, setTime] = useState("--:--:--");
-
-  useEffect(() => {
-    const tick = () => {
-      try {
-        setTime(
-          new Date().toLocaleTimeString("en-GB", {
-            timeZone: "Europe/Lisbon",
-            hour12: false,
-          })
-        );
-      } catch (e) {
-        setTime(new Date().toLocaleTimeString());
-      }
-    };
-    tick();
-    const interval = setInterval(tick, 1000);
-    return () => clearInterval(interval);
-  }, []);
-
   return (
     <footer className="footer">
       <div className="footer__grid">
@@ -38,9 +15,9 @@ export default function Footer() {
         </div>
 
         <div className="footer__col footer__col--r">
-          <h5>Local time</h5>
-          <span className="footer__clock" id="clock">{time}</span>
-          <span className="footer__loc">Lisbon, PT</span>
+          <h5>Support</h5>
+          <span className="footer__clock">We reply within</span>
+          <span className="footer__loc">24 hours</span>
         </div>
       </div>
 

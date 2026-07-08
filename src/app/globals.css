@@ -738,8 +738,9 @@ body:has(button:hover) {
   }
 
   .nav__cta {
-    height: 42px;
-    padding-inline: 20px;
+    height: 34px;
+    padding-inline: 12px;
+    font-size: .82rem;
   }
 
   .nav__links {
@@ -1339,6 +1340,17 @@ body:has(button:hover) {
   font-size: 1.1rem;
   font-weight: 500;
   text-align: right;
+  white-space: nowrap;
+}
+
+@media (max-width: 600px) {
+  .wcard__meta {
+    flex-direction: column;
+    gap: 2px;
+  }
+  .wcard__meta span {
+    text-align: left;
+  }
 }
 
 /* — Lightbox modal — */

@@ -366,7 +366,7 @@ export default function ContactPage() {
               </div>
 
               {/* Studio */}
-              <div className="flex items-center gap-4">
+              {/* <div className="flex items-center gap-4">
                 <div className="flex items-center justify-center w-11 h-11 rounded-[16px] bg-white/15 text-white shrink-0">
                   <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                     <path strokeLinecap="round" strokeLinejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"></path>
@@ -379,7 +379,7 @@ export default function ContactPage() {
                     Lisbon, Portugal
                   </span>
                 </div>
-              </div>
+              </div> */}
             </div>
           </div>
 
@@ -436,7 +436,7 @@ export default function ContactPage() {
                   <span>Send us an Email →</span>
                 </a>
 
-                <div className="border-t border-slate-200 pt-6">
+                {/* <div className="border-t border-slate-200 pt-6">
                   <span className="text-sm font-bold text-slate-800">
                     Helpful details to include
                   </span>
@@ -454,7 +454,7 @@ export default function ContactPage() {
                       Timeline
                     </span>
                   </div>
-                </div>
+                </div> */}
 
               </div>
             </div>

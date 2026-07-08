@@ -31,9 +31,14 @@ const testimonials = [
 
 export default function Quote() {
   const [current, setCurrent] = useState(0);
+  const [touchStart, setTouchStart] = useState(null);
 
   const next = useCallback(() => {
     setCurrent((c) => (c + 1) % testimonials.length);
+  }, []);
+
+  const prev = useCallback(() => {
+    setCurrent((c) => (c - 1 + testimonials.length) % testimonials.length);
   }, []);
 
   useEffect(() => {
@@ -41,9 +46,22 @@ export default function Quote() {
     return () => clearInterval(interval);
   }, [next]);
 
+  const onTouchStart = (e) => {
+    setTouchStart(e.touches[0].clientX);
+  };
+
+  const onTouchEnd = (e) => {
+    if (touchStart === null) return;
+    const diff = touchStart - e.changedTouches[0].clientX;
+    if (Math.abs(diff) > 50) {
+      diff > 0 ? next() : prev();
+    }
+    setTouchStart(null);
+  };
+
   return (
     <section className="quote">
-      <div className="quote__carousel">
+      <div className="quote__carousel" onTouchStart={onTouchStart} onTouchEnd={onTouchEnd}>
         {testimonials.map((t, i) => (
           <div key={i} className={`quote__slide${i === current ? " is-active" : ""}`}>
             <blockquote
