@@ -75,7 +75,7 @@ export default function Inside() {
               <span className="wcard__idx">06</span>
               <img src="/assets/locations_listing.png" alt="BillNode Location Listing" decoding="async" />
             </div>
-            <div className="wcard__meta"><h3>Client locations</h3><span>Organize and manage client locations</span></div>
+            <div className="wcard__meta"><h3>Locations</h3><span>Organize and manage client locations</span></div>
           </article>
 
 
