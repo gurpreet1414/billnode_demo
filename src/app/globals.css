@@ -1294,8 +1294,18 @@ body:has(button:hover) {
 }
 
 @media (max-height: 800px) {
+  .work__track {
+    padding: 0 6px;
+    gap: 12px;
+  }
+  .work__intro {
+    padding-right: 12px;
+  }
+  .wcard {
+    width: min(80vw, 520px);
+  }
   .wcard__img {
-    padding: 16px;
+    padding: 8px;
   }
 }
 
@@ -1915,7 +1925,7 @@ body:has(button:hover) {
   letter-spacing: -.02em;
   line-height: 1.15;
   max-width: 20ch;
-  margin: 0 auto 50px;
+  margin: 0 auto 30px;
 }
 
 .quote__text .serif {
@@ -1924,6 +1934,22 @@ body:has(button:hover) {
 
 .quote__text .rword {
   color: inherit;
+}
+
+.quote__carousel {
+  display: grid;
+}
+
+.quote__slide {
+  grid-area: 1 / 1;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+}
+
+.quote__slide.is-active {
+  opacity: 1;
+  pointer-events: auto;
 }
 
 .quote__by {
@@ -1957,6 +1983,28 @@ body:has(button:hover) {
 
 .quote__by div {
   text-align: left;
+}
+
+.quote__dots {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 40px;
+}
+
+.quote__dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(247, 245, 240, .25);
+  border: 0;
+  cursor: pointer;
+  transition: background .3s;
+  padding: 0;
+}
+
+.quote__dot.is-active {
+  background: var(--orange);
 }
 
 /* =====================================================================

@@ -45,10 +45,9 @@ export default function Header({ className }) {
         />
       </a>
       <nav className="nav__links">
-        <a href="/features" data-cursor>Features</a>
-        <a href="/#inside" data-cursor>Product</a>
+        <a href="/#inside" data-cursor>Features</a>
         <a href="/#process" data-cursor>How it Works</a>
-        <a href="/pricing" data-cursor>Pricing</a>
+        <a href="/#pricing" data-cursor>Pricing</a>
         <a href="/contact" data-cursor>Contact</a>
       </nav>
 
@@ -70,11 +69,10 @@ export default function Header({ className }) {
       {/* Mobile Drawer Overlay */}
       <div className={`nav__drawer ${isMenuOpen ? "is-open" : ""}`}>
         <nav className="nav__drawer-links">
-          <a href="/features" onClick={closeMenu} data-cursor><span className="nav__drawer-num">01</span>Features</a>
-          <a href="/#inside" onClick={closeMenu} data-cursor><span className="nav__drawer-num">02</span>Product</a>
-          <a href="/#process" onClick={closeMenu} data-cursor><span className="nav__drawer-num">03</span>How it Works</a>
-          <a href="/pricing" onClick={closeMenu} data-cursor><span className="nav__drawer-num">04</span>Pricing</a>
-          <a href="/contact" onClick={closeMenu} data-cursor><span className="nav__drawer-num">05</span>Contact</a>
+          <a href="/#inside" onClick={closeMenu} data-cursor><span className="nav__drawer-num">01</span>Features</a>
+          <a href="/#process" onClick={closeMenu} data-cursor><span className="nav__drawer-num">02</span>How it Works</a>
+          <a href="/#pricing" onClick={closeMenu} data-cursor><span className="nav__drawer-num">03</span>Pricing</a>
+          <a href="/contact" onClick={closeMenu} data-cursor><span className="nav__drawer-num">04</span>Contact</a>
         </nav>
         <div className="nav__drawer-footer">
           <div className="nav__drawer-socials">

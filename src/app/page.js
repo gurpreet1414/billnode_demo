@@ -80,9 +80,10 @@ export default function Home() {
     }
 
     const anchorClicks = [];
-    $$('a[href^="#"]').forEach((a) => {
+    $$('a[href^="#"], a[href^="/#"]').forEach((a) => {
       const onClick = (e) => {
-        const id = a.getAttribute("href");
+        const href = a.getAttribute("href");
+        const id = href.startsWith("/#") ? href.slice(1) : href;
         if (id.length < 2) return;
         const el = $(id);
         if (!el) return;

@@ -27,8 +27,8 @@ export default function Footer() {
       <div className="footer__grid">
         <div className="footer__col">
           <h5>Product</h5>
-          <a href="/features" data-cursor>Features</a>
-          <a href="/pricing" data-cursor>Pricing</a>
+          <a href="/#inside" data-cursor>Features</a>
+          <a href="/#pricing" data-cursor>Pricing</a>
           <a href="/#process" data-cursor>How it Works</a>
         </div>
         <div className="footer__col">
