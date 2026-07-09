@@ -27,7 +27,16 @@ export default function Inside() {
           <div className="work__intro">
             <span className="eyebrow"><i></i> Inside BillNode</span>
             <h2 className="work__h">One app,<br />every view</h2>
-            <p>From first tracked hour to final invoice — keep scrolling to take the tour.</p>
+            <p className="work__intro-desktop">From first tracked hour to final invoice — keep scrolling to take the tour.</p>
+            <div className="work__intro-mobile">
+              <p>From first tracked hour to final invoice — scroll up to see the cards.</p>
+              <div className="scroll-indicator">
+                <div className="scroll-indicator__track">
+                  <div className="scroll-indicator__dot"></div>
+                </div>
+                <span className="scroll-indicator__text">Scroll vertically</span>
+              </div>
+            </div>
           </div>
 
           <article className="wcard" data-cursor="view">
