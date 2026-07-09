@@ -1230,7 +1230,7 @@ body:has(button:hover) {
 .work__track {
   display: flex;
   align-items: center;
-  gap: clamp(20px, 3vw, 48px);
+  gap: clamp(32px, 4.5vw, 64px);
   padding: 0 var(--pad);
   will-change: transform;
 }
@@ -1263,6 +1263,11 @@ body:has(button:hover) {
 .wcard {
   flex: none;
   width: min(86vw, 620px);
+  transition: transform .3s var(--ease);
+}
+
+.wcard:hover {
+  transform: translateY(-6px);
 }
 
 .wcard__img img {
@@ -1286,12 +1291,11 @@ body:has(button:hover) {
   box-shadow: 0 8px 24px -8px rgba(28, 22, 16, .1);
   place-items: center;
   cursor: pointer;
-  transition: box-shadow .3s var(--ease), transform .3s var(--ease);
+  transition: box-shadow .3s var(--ease);
 }
 
-.wcard__img:hover {
-  box-shadow: 0 12px 32px -8px rgba(28, 22, 16, .15);
-  transform: translateY(-2px);
+.wcard:hover .wcard__img {
+  box-shadow: 0 16px 36px -12px rgba(28, 22, 16, .18);
 }
 
 @media (max-height: 800px) {

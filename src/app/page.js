@@ -214,17 +214,19 @@ export default function Home() {
             invalidateOnRefresh: true,
           },
         });
-        $$(".wcard__img").forEach((img) =>
-          gsap.fromTo(
-            img,
-            { scale: 1.12 },
-            {
-              scale: 1,
-              ease: "none",
-              scrollTrigger: { trigger: img, containerAnimation: st, start: "left right", end: "center center", scrub: true },
-            }
-          )
-        );
+        $$(".wcard__img").forEach((img) => {
+          const tl = gsap.timeline({
+            scrollTrigger: {
+              trigger: img,
+              containerAnimation: st,
+              start: "left right",
+              end: "right left",
+              scrub: true,
+            },
+          });
+          tl.fromTo(img, { scale: 1 }, { scale: 1.08, ease: "none", duration: 0.5 })
+            .to(img, { scale: 1, ease: "none", duration: 0.5 });
+        });
         $$(".wcard__idx").forEach((idx) =>
           gsap.fromTo(
             idx,
