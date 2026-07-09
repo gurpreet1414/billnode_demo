@@ -29,12 +29,12 @@ export default function Inside() {
             <h2 className="work__h">One app,<br />every view</h2>
             <p className="work__intro-desktop">From first tracked hour to final invoice — keep scrolling to take the tour.</p>
             <div className="work__intro-mobile">
-              <p>From first tracked hour to final invoice — scroll up to see the cards.</p>
+              <p>From first tracked hour to final invoice — swipe to take the tour.</p>
               <div className="scroll-indicator">
                 <div className="scroll-indicator__track">
                   <div className="scroll-indicator__dot"></div>
                 </div>
-                <span className="scroll-indicator__text">Scroll vertically</span>
+                <span className="scroll-indicator__text">Swipe left or right</span>
               </div>
             </div>
           </div>

@@ -200,45 +200,48 @@ export default function Home() {
         ).then(() => {
           ScrollTrigger.refresh();
         });
-        const dist = () => Math.max(0, workTrack.scrollWidth - window.innerWidth);
-        const st = gsap.to(workTrack, {
-          x: () => -dist(),
-          ease: "none",
-          scrollTrigger: {
-            trigger: workSection,
-            start: "top top",
-            end: () => "+=" + (dist() + window.innerWidth),
-            pin: ".work__pin",
-            scrub: 1,
-            anticipatePin: 1,
-            invalidateOnRefresh: true,
-          },
-        });
-        $$(".wcard__img").forEach((img) => {
-          const tl = gsap.timeline({
+        let mm = gsap.matchMedia();
+        mm.add("(min-width: 769px)", () => {
+          const dist = () => Math.max(0, workTrack.scrollWidth - window.innerWidth);
+          const st = gsap.to(workTrack, {
+            x: () => -dist(),
+            ease: "none",
             scrollTrigger: {
-              trigger: img,
-              containerAnimation: st,
-              start: "left right",
-              end: "right left",
-              scrub: true,
+              trigger: workSection,
+              start: "top top",
+              end: () => "+=" + (dist() + window.innerWidth),
+              pin: ".work__pin",
+              scrub: 1,
+              anticipatePin: 1,
+              invalidateOnRefresh: true,
             },
           });
-          tl.fromTo(img, { scale: 1 }, { scale: 1.08, ease: "none", duration: 0.5 })
-            .to(img, { scale: 1, ease: "none", duration: 0.5 });
+          $$(".wcard__img").forEach((img) => {
+            const tl = gsap.timeline({
+              scrollTrigger: {
+                trigger: img,
+                containerAnimation: st,
+                start: "left right",
+                end: "right left",
+                scrub: true,
+              },
+            });
+            tl.fromTo(img, { scale: 1 }, { scale: 1.08, ease: "none", duration: 0.5 })
+              .to(img, { scale: 1, ease: "none", duration: 0.5 });
+          });
+          $$(".wcard__idx").forEach((idx) =>
+            gsap.fromTo(
+              idx,
+              { yPercent: 60, opacity: 0 },
+              {
+                yPercent: 0,
+                opacity: 1,
+                ease: "power2.out",
+                scrollTrigger: { trigger: idx, containerAnimation: st, start: "left 90%", end: "left 55%", scrub: true },
+              }
+            )
+          );
         });
-        $$(".wcard__idx").forEach((idx) =>
-          gsap.fromTo(
-            idx,
-            { yPercent: 60, opacity: 0 },
-            {
-              yPercent: 0,
-              opacity: 1,
-              ease: "power2.out",
-              scrollTrigger: { trigger: idx, containerAnimation: st, start: "left 90%", end: "left 55%", scrub: true },
-            }
-          )
-        );
       }
 
       $$("[data-count]").forEach((el) => {
