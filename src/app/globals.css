@@ -1325,6 +1325,12 @@ body:has(button:hover) {
   z-index: 2;
 }
 
+@media (max-width: 768px) {
+  .wcard__idx {
+    display: none !important;
+  }
+}
+
 .wcard__meta {
   display: flex;
   align-items: baseline;
